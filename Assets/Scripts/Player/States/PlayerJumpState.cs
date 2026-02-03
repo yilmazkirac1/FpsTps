@@ -8,7 +8,11 @@ public class PlayerJumpState : IPlayerState
         sm = stateMachine;
     }
 
-    public void Enter() { }
+    public void Enter()
+    {
+        sm.Motor.Jump();
+        sm.PlayerAnimator.TriggerJump();
+    }
 
     public void Update()
     {

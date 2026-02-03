@@ -27,12 +27,15 @@ public class PlayerMoveState : IPlayerState
     
         if (sm.Input.JumpPressed && sm.Motor.IsGrounded())
         {
-            sm.Motor.Jump();
-            sm.GetComponent<PlayerAnimator>().TriggerJump();
             sm.ChangeState(new PlayerJumpState(sm));
             return;
         }
 
+        if (sm.Input.RollPressed && sm.Motor.IsGrounded())
+        {
+            sm.ChangeState(new PlayerRollState(sm));
+            return;
+        }
         if (move.magnitude < 0.1f)
         {
             sm.ChangeState(new PlayerIdleState(sm));

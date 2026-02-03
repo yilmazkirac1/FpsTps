@@ -1543,8 +1543,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: accb7ed1ea1021847bb1c7bca0fc1235, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  walkSpeed: 10
-  runSpeed: 15
+  walkSpeed: 8
+  runSpeed: 10
   airControlMultiplier: 0.8
   jumpHeight: 1.5
   gravity: -9.81
@@ -1562,6 +1562,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b31548a56055213419aef3a8e501ee08, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CameraController: {fileID: 873519619}
 --- !u!114 &1861987101
 MonoBehaviour:
   m_ObjectHideFlags: 0

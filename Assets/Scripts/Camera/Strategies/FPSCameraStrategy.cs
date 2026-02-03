@@ -7,7 +7,7 @@ public class FPSCameraStrategy : ICameraStrategy
     private CameraController controller;
 
     private float xRotation = 0f;
-    private Vector3 headOffset = new Vector3(0, 1.6f, -0.3f);
+    private Vector3 headOffset = new Vector3(0, 1.6f, 0);
 
     public FPSCameraStrategy(Camera cam, Transform target, CameraController controller)
     {

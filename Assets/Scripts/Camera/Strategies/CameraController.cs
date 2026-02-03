@@ -20,15 +20,12 @@ public class CameraController : MonoBehaviour
     {
         // Otomatik doldurma (Inspector boþsa)
         if (cam == null) cam = GetComponent<Camera>();
-
-        Debug.Log($"[CameraController] Awake. cam={(cam ? cam.name : "NULL")} target={(target ? target.name : "NULL")}");
     }
 
     void Start()
     {
         if (cam == null || target == null)
         {
-            Debug.LogError("[CameraController] cam veya target boþ! Inspector'dan atamalýsýn.");
             enabled = false;
             return;
         }
@@ -36,8 +33,6 @@ public class CameraController : MonoBehaviour
         // Oyun baþlarken TPS ile baþla
         CurrentMode = CameraViewMode.TPS;
         SetStrategy(new TPSCameraStrategy(cam, target, this));
-
-        Debug.Log("[CameraController] Start -> TPS strategy set edildi.");
     }
     void Update()
     {

@@ -19,11 +19,13 @@ public class PlayerMotor : MonoBehaviour
     private CharacterController controller;
     private Vector3 velocity;
     private bool isGrounded;
+    private PlayerInputHandler playerInputHandler;
     #endregion
 
     void Awake()
     {
         controller = GetComponent<CharacterController>();
+        playerInputHandler = GetComponent<PlayerInputHandler>();
     }
 
     #region Motor API (STATE'LER ÇAÐIRIR)
@@ -37,14 +39,14 @@ public class PlayerMotor : MonoBehaviour
     }
 
     public void Move(float x, float z, bool rotateToMoveDirection)
-    {
+    {        
         Vector3 moveDirection =
             cameraTransform.right * x +
             cameraTransform.forward * z;
 
         moveDirection.y = 0f;
 
-        float speed = Input.GetKey(KeyCode.LeftShift) ? runSpeed : walkSpeed;
+        float speed = playerInputHandler.RunPressed ? runSpeed : walkSpeed;
         float control = isGrounded ? 1f : airControlMultiplier;
 
         // ? TPS: karakteri hareket yönüne döndür
@@ -54,7 +56,7 @@ public class PlayerMotor : MonoBehaviour
             transform.rotation = Quaternion.Slerp(transform.rotation, targetRot, rotationSpeed * Time.deltaTime);
         }
 
-        controller.Move(moveDirection * speed * control * Time.deltaTime);
+        controller.Move(moveDirection.normalized * speed * control * Time.deltaTime);
     }
 
 

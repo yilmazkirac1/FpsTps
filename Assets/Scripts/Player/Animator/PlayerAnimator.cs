@@ -18,6 +18,7 @@ public class PlayerAnimator : MonoBehaviour
     private static readonly int GroundHash = Animator.StringToHash("IsGrounded");
     private static readonly int CrouchHash = Animator.StringToHash("IsCrouching");
     private static readonly int JumpHash = Animator.StringToHash("Jump");
+    private static readonly int RollHash = Animator.StringToHash("Roll");
     private static readonly int YVelHash = Animator.StringToHash("YVelocity");
 
     void Awake()
@@ -64,7 +65,11 @@ public class PlayerAnimator : MonoBehaviour
         anim.ResetTrigger(JumpHash);
         anim.SetTrigger(JumpHash);
     }
-
+    public void TriggerRoll()
+    {
+        anim.ResetTrigger(RollHash);
+        anim.SetTrigger(RollHash);
+    }
     public void SetCrouch(bool value)
     {
         anim.SetBool(CrouchHash, value);

@@ -4,16 +4,17 @@ public class PlayerStateMachine : MonoBehaviour
 {
     public PlayerMotor Motor { get; private set; }
     public PlayerInputHandler Input { get; private set; }
+    public PlayerAnimator PlayerAnimator { get; private set; }
 
     private IPlayerState currentState;
 
-    public CameraController CameraController { get; private set; }
+    public CameraController CameraController;
 
     void Awake()
     {
         Motor = GetComponent<PlayerMotor>();
         Input = GetComponent<PlayerInputHandler>();
-        CameraController = FindObjectOfType<CameraController>();
+        PlayerAnimator = GetComponentInChildren<PlayerAnimator>();
     }
 
 

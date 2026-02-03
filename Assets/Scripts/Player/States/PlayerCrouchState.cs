@@ -21,6 +21,11 @@ public class PlayerCrouchState : IPlayerState
         bool rotate = sm.CameraController.CurrentMode == CameraViewMode.TPS;
         sm.Motor.Move(move.x, move.y, rotate);
 
+        if (sm.Input.RollPressed && sm.Motor.IsGrounded())
+        {
+            sm.ChangeState(new PlayerRollState(sm));
+            return;
+        }
 
         // ? Jump yok (bilerek çaðrýlmýyor)
 
