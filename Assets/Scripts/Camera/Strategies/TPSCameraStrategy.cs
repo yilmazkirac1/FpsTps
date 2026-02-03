@@ -9,6 +9,8 @@ public class TPSCameraStrategy : ICameraStrategy
     private float distance = 4f;
     private float yaw;
     private float pitch = 20f;
+    private Vector3 posVelocity;
+    private float smoothTime = 0.06f;
 
     public TPSCameraStrategy(Camera cam, Transform target, CameraController controller)
     {
@@ -33,7 +35,14 @@ public class TPSCameraStrategy : ICameraStrategy
         Quaternion rot = Quaternion.Euler(pitch, yaw, 0);
         Vector3 offset = rot * new Vector3(0, 0, -distance);
 
-        cam.transform.position = target.position + offset;
+        Vector3 desiredPos = target.position + offset;
+        cam.transform.position = Vector3.SmoothDamp(
+            cam.transform.position,
+            desiredPos,
+            ref posVelocity,
+            smoothTime
+        );
         cam.transform.LookAt(target.position + Vector3.up * 1.5f);
+
     }
 }

@@ -11,13 +11,16 @@ public class PlayerCrouchState : IPlayerState
 
     public void Enter()
     {
-        // collider küçültme / animasyon burada
+        sm.GetComponent<PlayerAnimator>().SetCrouch(true);
     }
 
     public void Update()
     {
         Vector2 move = sm.Input.MoveInput;
-        sm.Motor.Move(move.x, move.y);
+
+        bool rotate = sm.CameraController.CurrentMode == CameraViewMode.TPS;
+        sm.Motor.Move(move.x, move.y, rotate);
+
 
         // ? Jump yok (bilerek çaðrýlmýyor)
 
@@ -29,7 +32,7 @@ public class PlayerCrouchState : IPlayerState
 
     public void Exit()
     {
-        // collider eski hal
+        sm.GetComponent<PlayerAnimator>().SetCrouch(false);
     }
 }
 

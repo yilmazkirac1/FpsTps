@@ -15,17 +15,20 @@ public class PlayerMoveState : IPlayerState
     {
         Vector2 move = sm.Input.MoveInput;
 
-        sm.Motor.Move(move.x, move.y);
+        bool rotate = sm.CameraController.CurrentMode == CameraViewMode.TPS;
+        sm.Motor.Move(move.x, move.y, rotate);
+
 
         if (sm.Input.CrouchPressed)
         {
             sm.ChangeState(new PlayerCrouchState(sm));
             return;
         }
-
+    
         if (sm.Input.JumpPressed && sm.Motor.IsGrounded())
         {
             sm.Motor.Jump();
+            sm.GetComponent<PlayerAnimator>().TriggerJump();
             sm.ChangeState(new PlayerJumpState(sm));
             return;
         }

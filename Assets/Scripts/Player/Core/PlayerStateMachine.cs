@@ -7,11 +7,15 @@ public class PlayerStateMachine : MonoBehaviour
 
     private IPlayerState currentState;
 
+    public CameraController CameraController { get; private set; }
+
     void Awake()
     {
         Motor = GetComponent<PlayerMotor>();
         Input = GetComponent<PlayerInputHandler>();
+        CameraController = FindObjectOfType<CameraController>();
     }
+
 
     void Start()
     {

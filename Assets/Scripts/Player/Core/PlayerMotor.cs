@@ -10,6 +10,9 @@ public class PlayerMotor : MonoBehaviour
     public float jumpHeight = 1.5f;
     public float gravity = -9.81f;
     public Transform cameraTransform;
+    [Header("Rotation")]
+    public float rotationSpeed = 12f;
+
     #endregion
 
     #region Private
@@ -33,19 +36,27 @@ public class PlayerMotor : MonoBehaviour
             velocity.y = -2f;
     }
 
-    public void Move(float x, float z)
+    public void Move(float x, float z, bool rotateToMoveDirection)
     {
-        Vector3 move =
+        Vector3 moveDirection =
             cameraTransform.right * x +
             cameraTransform.forward * z;
 
-        move.y = 0f;
+        moveDirection.y = 0f;
 
         float speed = Input.GetKey(KeyCode.LeftShift) ? runSpeed : walkSpeed;
         float control = isGrounded ? 1f : airControlMultiplier;
 
-        controller.Move(move * speed * control * Time.deltaTime);
+        // ? TPS: karakteri hareket yönüne döndür
+        if (rotateToMoveDirection && moveDirection.sqrMagnitude > 0.0001f)
+        {
+            Quaternion targetRot = Quaternion.LookRotation(moveDirection.normalized, Vector3.up);
+            transform.rotation = Quaternion.Slerp(transform.rotation, targetRot, rotationSpeed * Time.deltaTime);
+        }
+
+        controller.Move(moveDirection * speed * control * Time.deltaTime);
     }
+
 
     public void Jump()
     {

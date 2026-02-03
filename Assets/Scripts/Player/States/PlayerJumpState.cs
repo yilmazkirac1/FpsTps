@@ -12,9 +12,11 @@ public class PlayerJumpState : IPlayerState
 
     public void Update()
     {
-        // Ýstersen havada hareket:
         Vector2 move = sm.Input.MoveInput;
-        sm.Motor.Move(move.x, move.y);
+
+        bool rotate = sm.CameraController.CurrentMode == CameraViewMode.TPS;
+        sm.Motor.Move(move.x, move.y, rotate);
+
 
         if (sm.Motor.IsGrounded())
         {
