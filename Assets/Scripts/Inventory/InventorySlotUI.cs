@@ -4,6 +4,8 @@ using UnityEngine;
 public class InventorySlotUI : MonoBehaviour
 {
     public TMP_Text itemText;
+    public int slotIndex;
+    public Inventory inventory;
 
     public void SetEmpty()
     {

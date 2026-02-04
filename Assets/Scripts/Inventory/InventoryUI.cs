@@ -8,6 +8,8 @@ public class InventoryUI : MonoBehaviour
     public InventorySlotUI slotPrefab;
 
     private InventorySlotUI[] uiSlots;
+    public static bool IsOpen;
+
     void Start()
     {
         Debug.Log("[InventoryUI] Start called");
@@ -17,6 +19,9 @@ public class InventoryUI : MonoBehaviour
         for (int i = 0; i < inventory.slots.Count; i++)
         {
             uiSlots[i] = Instantiate(slotPrefab, slotsParent, false);
+            uiSlots[i].slotIndex = i;
+            uiSlots[i].inventory = inventory;
+
         }
 
         // EN ÖNEMLÝ SATIR
@@ -35,8 +40,20 @@ public class InventoryUI : MonoBehaviour
         {
             bool newState = !panel.activeSelf;
             panel.SetActive(newState);
-            Debug.Log("[InventoryUI] Panel set to: " + newState);
+            IsOpen = newState;
+
+            if (newState)
+            {
+                Cursor.lockState = CursorLockMode.None;
+                Cursor.visible = true;
+            }
+            else
+            {
+                Cursor.lockState = CursorLockMode.Locked;
+                Cursor.visible = false;
+            }
         }
+
     }
 
     void Refresh()

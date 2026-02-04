@@ -42,6 +42,22 @@ public class Inventory : MonoBehaviour
 
         return false;
     }
+    public bool Move(int fromIndex, int toIndex)
+    {
+        if (fromIndex == toIndex) return false;
+        if (fromIndex < 0 || fromIndex >= slots.Count) return false;
+        if (toIndex < 0 || toIndex >= slots.Count) return false;
+
+        var a = slots[fromIndex];
+        var b = slots[toIndex];
+
+        // swap
+        slots[fromIndex] = b;
+        slots[toIndex] = a;
+
+        if (OnChanged != null) OnChanged();
+        return true;
+    }
 
     public void Print()
     {

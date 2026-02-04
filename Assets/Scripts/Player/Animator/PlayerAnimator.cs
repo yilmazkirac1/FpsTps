@@ -32,6 +32,8 @@ public class PlayerAnimator : MonoBehaviour
 
     void Update()
     {
+        if (InventoryUI.IsOpen) return;
+
         // Ground
         anim.SetBool(GroundHash, motor.IsGrounded());
 

@@ -29,6 +29,8 @@ public class FPSCameraStrategy : ICameraStrategy
 
     public void UpdateCamera()
     {
+        if (InventoryUI.IsOpen) return;
+
         float mouseX = Input.GetAxis("Mouse X") * controller.fpsSensitivity * Time.deltaTime;
         float mouseY = Input.GetAxis("Mouse Y") * controller.fpsSensitivity * Time.deltaTime;
 
