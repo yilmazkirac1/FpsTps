@@ -77,6 +77,14 @@ public class PlayerMotor : MonoBehaviour
     {
         return isGrounded;
     }
+    public void RollMove(Vector3 worldDir, float rollSpeed)
+    {
+        worldDir.y = 0f;
+        if (worldDir.sqrMagnitude < 0.0001f) return;
+
+        controller.Move(worldDir.normalized * rollSpeed * Time.deltaTime);
+    }
 
     #endregion
+
 }

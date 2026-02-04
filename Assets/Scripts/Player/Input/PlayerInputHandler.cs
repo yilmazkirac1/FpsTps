@@ -8,6 +8,6 @@ public class PlayerInputHandler : MonoBehaviour
     public bool RunPressed => Input.GetKey(KeyCode.LeftShift);
     public bool CrouchPressed => Input.GetKey(KeyCode.LeftControl);
     public bool JumpPressed => Input.GetButtonDown("Jump");
-    public bool RollPressed => Input.GetKey(KeyCode.Q);
+    public bool RollPressed => Input.GetKeyDown(KeyCode.Q);
 
 }
