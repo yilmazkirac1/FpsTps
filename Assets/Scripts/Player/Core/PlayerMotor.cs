@@ -40,7 +40,7 @@ public class PlayerMotor : MonoBehaviour
 
     public void Move(float x, float z, bool rotateToMoveDirection)
     {
-        if (InventoryUI.IsOpen) return;
+   
 
         Vector3 moveDirection =
             cameraTransform.right * x +

@@ -28,7 +28,7 @@ public class TPSCameraStrategy : ICameraStrategy
 
     public void UpdateCamera()
     {
-        if (InventoryUI.IsOpen) return;
+    
 
         yaw += Input.GetAxis("Mouse X") * controller.tpsSensitivity * Time.deltaTime;
         pitch -= Input.GetAxis("Mouse Y") * controller.tpsSensitivity * Time.deltaTime;
