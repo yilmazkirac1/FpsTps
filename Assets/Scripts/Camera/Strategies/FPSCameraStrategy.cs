@@ -22,7 +22,7 @@ public class FPSCameraStrategy : ICameraStrategy
 
     public void OnEnter()
     {
-        Cursor.lockState = CursorLockMode.Locked;
+        //Cursor.lockState = CursorLockMode.Locked;
     }
 
     public void OnExit() { }
